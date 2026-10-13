@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBBIP Holding Limited | 悠遊香港 每一刻都值得珍藏</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0c4a6e',      // 深海藍
+                            primary: '#0284c7',    // 天藍
+                            accent: '#f59e0b',     // 夕陽橙
+                            sand: '#f7f3ea',       // 沙色
+                            sky: '#e0f2fe'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans SC"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(2, 132, 199, 0.1);
+            box-shadow: 0 4px 20px rgba(2, 132, 199, 0.08);
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(rgba(12, 74, 110, 0.7), rgba(12, 74, 110, 0.45)), url('https://picsum.photos/id/128/1920/1080');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(2, 132, 199, 0.2);
+        }
+
+        .room-card img { transition: transform 0.6s ease; }
+        .room-card:hover img { transform: scale(1.06); }
+
+        .wave-pattern {
+            background-image: radial-gradient(circle at 30% 50%, rgba(245, 158, 11, 0.15) 2px, transparent 2px);
+            background-size: 36px 36px;
+        }
+    </style>
+</head>
+<body class="bg-sand text-slate-700 antialiased overflow-x-hidden">
+
+    <!-- 頂部公告 -->
+    <div class="bg-brand-dark text-sky-200 text-xs py-2 px-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <span><i class="fas fa-sailboat mr-2"></i>夏季限定：「維港夜景三天兩夜」住宿套票，現已開放預訂，低至 7 折。</span>
+            <span class="hidden md:block">24 小時訂房熱線：93743971</span>
+        </div>
+    </div>
+
+    <!-- 導航 -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-5 top-8">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 bg-gradient-to-br from-brand-primary to-brand-accent rounded-lg flex items-center justify-center text-white text-xl shadow-lg">
+                    <i class="fas fa-hotel"></i>
+                </div>
+                <div class="text-brand-dark">
+                    <h1 class="font-bold text-lg leading-tight">BBBIP Holding</h1>
+                    <p class="text-[10px] tracking-[0.3em] text-brand-primary uppercase">Hotel &amp; Travel</p>
+                </div>
+            </div>
+
+            <div class="hidden md:flex space-x-8 text-brand-dark text-sm font-medium">
+                <a href="#home" class="hover:text-brand-primary transition">首頁</a>
+                <a href="#about" class="hover:text-brand-primary transition">關於我們</a>
+                <a href="#rooms" class="hover:text-brand-primary transition">客房介紹</a>
+                <a href="#dining" class="hover:text-brand-primary transition">餐飲設施</a>
+                <a href="#tours" class="hover:text-brand-primary transition">旅遊行程</a>
+                <a href="#contact" class="hover:text-brand-primary transition">聯絡我們</a>
+            </div>
+
+            <a href="#contact" class="hidden md:inline-block px-6 py-2.5 bg-brand-primary text-white font-bold rounded-full hover:bg-brand-dark transition duration-300 text-sm shadow-lg shadow-sky-500/30">
+                立即訂房
+            </a>
+
+            <button class="md:hidden text-brand-dark text-2xl"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header id="home" class="hero-bg h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/25"></div>
+        <div class="container mx-auto px-6 relative z-10 text-center text-white mt-16">
+            <span class="inline-block py-1 px-4 border border-amber-300/60 rounded-full text-amber-200 text-sm mb-6 tracking-[0.3em] reveal">EXPLORE HONG KONG · SINCE 2006</span>
+            <h2 class="text-5xl md:text-7xl font-black mb-6 leading-tight reveal" style="transition-delay: 100ms;">
+                遠方的風景，<br><span class="text-amber-300">不如眼前的香港。</span>
+            </h2>
+            <p class="text-lg md:text-xl text-gray-100 mb-10 max-w-2xl mx-auto reveal" style="transition-delay: 200ms;">
+                BBBIP Holding Limited 旗下酒店坐落維港之畔，結合精緻住宿與深度旅遊體驗，帶您發掘香港最迷人的一面。
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center reveal" style="transition-delay: 300ms;">
+                <a href="#rooms" class="px-8 py-4 bg-brand-accent text-white font-bold rounded-lg hover:bg-orange-600 transition shadow-lg shadow-orange-500/30">
+                    查看客房 <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+                <a href="#contact" class="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg font-bold hover:bg-white/20 transition">
+                    預訂住宿
+                </a>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/50">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </div>
+    </header>
+
+    <!-- 數據統計 -->
+    <section class="py-10 bg-white relative -mt-10 z-20 shadow-xl rounded-t-3xl mx-4 md:mx-10">
+        <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-gray-100">
+            <div class="reveal">
+                <div class="text-4xl font-bold text-brand-dark mb-2 counter" data-target="320">0</div>
+                <div class="text-gray-500 text-sm">間客房及套房</div>
+            </div>
+            <div class="reveal" style="transition-delay: 100ms;">
+                <div class="text-4xl font-bold text-brand-primary mb-2 counter" data-target="95">0</div>
+                <div class="text-gray-500 text-sm">入住率 (%)</div>
+            </div>
+            <div class="reveal" style="transition-delay: 200ms;">
+                <div class="text-4xl font-bold text-brand-accent mb-2">4.9<span class="text-lg">/5</span></div>
+                <div class="text-gray-500 text-sm">旅客評分</div>
+            </div>
+            <div class="reveal" style="transition-delay: 300ms;">
+                <div class="text-4xl font-bold text-brand-dark mb-2 counter" data-target="20">0</div>
+                <div class="text-gray-500 text-sm">條特色旅遊路線</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 關於我們 -->
+    <section id="about" class="py-20 bg-sand">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 relative reveal">
+                    <img src="https://picsum.photos/id/260/800/600" alt="酒店外觀" class="rounded-2xl shadow-2xl z-10 relative">
+                    <div class="absolute -bottom-10 -right-10 w-48 h-48 bg-brand-primary/15 rounded-full z-0 blur-3xl"></div>
+                    <div class="absolute -top-10 -left-10 w-48 h-48 bg-brand-accent/15 rounded-full z-0 blur-3xl"></div>
+                    <div class="absolute bottom-6 left-6 bg-brand-dark text-white px-6 py-4 rounded-xl shadow-xl">
+                        <p class="text-2xl font-bold text-amber-300">2,000+</p>
+                        <p class="text-xs text-gray-300">每月接待旅客</p>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 reveal">
+                    <h3 class="text-brand-primary font-bold tracking-[0.3em] uppercase mb-3">關於BBBIP Holding Limited</h3>
+                    <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-6 leading-snug">以香港人的熱情，<br>款待每一位旅客</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        BBBIP Holding Limited，總部位於香港，是一家集酒店住宿、餐飲及旅遊服務於一體的綜合旅遊集團，旗下擁有三間主題酒店。
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        我們相信，最好的旅遊體驗源於細節。從枕頭的軟硬度到行程的每個安排，我們以「港式貼心」服務，讓每位賓客賓至如歸。
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-brand-primary mr-3"></i> 屢獲世界旅遊大獎「香港最佳城市酒店」</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-brand-primary mr-3"></i> 米芝蓮推薦餐廳兩家</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-brand-primary mr-3"></i> 綠色酒店認證，推動可持續旅遊</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 客房介紹 -->
+    <section id="rooms" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-primary font-bold tracking-[0.3em]">ACCOMMODATION</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mt-3 mb-4">客房與套房</h2>
+                <p class="text-gray-500 max-w-xl mx-auto">每一扇窗，都框住香港最美的風景。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="room-card card-hover rounded-2xl overflow-hidden shadow-md border border-sky-100 bg-white reveal">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://picsum.photos/id/1058/800/500" alt="豪華客房" class="w-full h-full object-cover">
+                        <span class="absolute top-4 left-4 bg-brand-primary text-white text-xs font-bold px-3 py-1 rounded-full">人氣之選</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-brand-dark mb-2">豪華海景客房</h3>
+                        <p class="text-gray-500 text-sm mb-3">350 呎 · 維港景觀 · 雙人床</p>
+                        <p class="text-gray-500 text-sm mb-4">落地玻璃盡覽維港日夜景，配備智能房間控制及高速 Wi-Fi。</p>
+                        <div class="flex justify-between items-center">
+                            <p class="text-brand-primary font-bold">HK$1,280 <span class="text-xs text-gray-500 font-normal">/ 晚起</span></p>
+                            <a href="#contact" class="text-brand-primary text-sm font-semibold hover:underline">立即預訂 &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="room-card card-hover rounded-2xl overflow-hidden shadow-md border border-sky-100 bg-white reveal" style="transition-delay: 100ms;">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://picsum.photos/id/152/800/500" alt="行政套房" class="w-full h-full object-cover">
+                        <span class="absolute top-4 left-4 bg-brand-accent text-white text-xs font-bold px-3 py-1 rounded-full">行政之選</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-brand-dark mb-2">行政海景套房</h3>
+                        <p class="text-gray-500 text-sm mb-3">680 呎 · 客廳分區 · 行政酒廊</p>
+                        <p class="text-gray-500 text-sm mb-4">獨立客廳與睡房，享行政酒廊全日餐飲及免費會議室使用。</p>
+                        <div class="flex justify-between items-center">
+                            <p class="text-brand-primary font-bold">HK$2,580 <span class="text-xs text-gray-500 font-normal">/ 晚起</span></p>
+                            <a href="#contact" class="text-brand-primary text-sm font-semibold hover:underline">立即預訂 &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="room-card card-hover rounded-2xl overflow-hidden shadow-md border border-sky-100 bg-white reveal" style="transition-delay: 200ms;">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://picsum.photos/id/445/800/500" alt="家庭客房" class="w-full h-full object-cover">
+                        <span class="absolute top-4 left-4 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full">家庭首選</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-brand-dark mb-2">家庭連通客房</h3>
+                        <p class="text-gray-500 text-sm mb-3">700 呎 · 兩房相連 · 兒童設施</p>
+                        <p class="text-gray-500 text-sm mb-4">兩房相連設計，附兒童專屬備品、遊戲角及 24 小時保姆服務。</p>
+                        <div class="flex justify-between items-center">
+                            <p class="text-brand-primary font-bold">HK$1,880 <span class="text-xs text-gray-500 font-normal">/ 晚起</span></p>
+                            <a href="#contact" class="text-brand-primary text-sm font-semibold hover:underline">立即預訂 &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 餐飲設施 -->
+    <section id="dining" class="py-20 bg-brand-dark relative overflow-hidden">
+        <img src="https://picsum.photos/id/1080/1920/1080" class="absolute inset-0 w-full h-full object-cover opacity-10" alt="bg">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <span class="text-amber-300 font-bold tracking-[0.3em]">DINING &amp; FACILITIES</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mt-3 mb-4">餐飲與設施</h2>
+                <p class="text-gray-200 max-w-xl mx-auto">味蕾的旅程，由酒店開始。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card-hover p-8 bg-white/5 backdrop-blur rounded-2xl border border-white/10 reveal">
+                    <div class="flex items-start gap-5">
+                        <div class="w-16 h-16 bg-amber-500/20 rounded-xl flex items-center justify-center text-3xl flex-shrink-0">
+                            <i class="fas fa-utensils text-amber-300"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2 text-white">海天一色餐廳</h4>
+                            <p class="text-gray-200 text-sm leading-relaxed">24 樓環迴景觀餐廳，供應自助早餐及國際自助晚餐，米芝蓮推薦，晚市每位港幣 688 元起。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-hover p-8 bg-white/5 backdrop-blur rounded-2xl border border-white/10 reveal" style="transition-delay: 100ms;">
+                    <div class="flex items-start gap-5">
+                        <div class="w-16 h-16 bg-amber-500/20 rounded-xl flex items-center justify-center text-3xl flex-shrink-0">
+                            <i class="fas fa-martini-glass text-amber-300"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2 text-white">維港之戀酒吧</h4>
+                            <p class="text-gray-200 text-sm leading-relaxed">天台無邊際泳池酒吧，日賞維港、夜觀幻彩詠香江，調酒師特調雞尾酒每日供應。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-hover p-8 bg-white/5 backdrop-blur rounded-2xl border border-white/10 reveal">
+                    <div class="flex items-start gap-5">
+                        <div class="w-16 h-16 bg-amber-500/20 rounded-xl flex items-center justify-center text-3xl flex-shrink-0">
+                            <i class="fas fa-person-swimming text-amber-300"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2 text-white">健身與水療</h4>
+                            <p class="text-gray-200 text-sm leading-relaxed">24 小時健身中心、室內恆溫泳池及專業水療中心，入住期間免費使用，身心全面放鬆。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-hover p-8 bg-white/5 backdrop-blur rounded-2xl border border-white/10 reveal" style="transition-delay: 100ms;">
+                    <div class="flex items-start gap-5">
+                        <div class="w-16 h-16 bg-amber-500/20 rounded-xl flex items-center justify-center text-3xl flex-shrink-0">
+                            <i class="fas fa-champagne-glasses text-amber-300"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2 text-white">宴會與會議</h4>
+                            <p class="text-gray-200 text-sm leading-relaxed">可容納 500 人的無柱宴會廳，配備最新影音設備，婚宴、會議及公司活動一站式策劃。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 旅遊行程 -->
+    <section id="tours" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-primary font-bold tracking-[0.3em]">TOURS &amp; EXPERIENCES</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mt-3 mb-4">精選旅遊行程</h2>
+                <p class="text-gray-500 max-w-xl mx-auto">專業導遊帶路，深度探索香港另一面。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card-hover p-8 bg-sky rounded-2xl border border-sky-100 transition-all duration-300 reveal">
+                    <div class="w-14 h-14 bg-white text-brand-primary rounded-xl flex items-center justify-center text-2xl mb-6 shadow-sm">
+                        <i class="fas fa-city"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">城市漫步之旅</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                        中環塗鴉牆、上環文武廟、深水埗地道美食，半天導賞團帶您走進香港的街頭故事。
+                    </p>
+                    <p class="text-brand-primary font-bold text-sm">HK$380 / 位起</p>
+                </div>
+
+                <div class="card-hover p-8 bg-sky rounded-2xl border border-sky-100 transition-all duration-300 reveal" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 bg-white text-brand-primary rounded-xl flex items-center justify-center text-2xl mb-6 shadow-sm">
+                        <i class="fas fa-mountain-sun"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">離島自然之旅</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                        南丫島行山、大澳棚屋漁村、西貢地質公園，遠離繁囂，擁抱香港的碧海藍天。
+                    </p>
+                    <p class="text-brand-primary font-bold text-sm">HK$580 / 位起</p>
+                </div>
+
+                <div class="card-hover p-8 bg-brand-dark rounded-2xl transition-all duration-300 reveal text-white" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 bg-amber-500/20 text-amber-300 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">豪華郵輪之旅</h3>
+                    <p class="text-gray-200 text-sm leading-relaxed mb-4">
+                        聯同國際郵輪公司推出「啟德出發」豪華航線，專人辦理登船手續及岸上行程安排。
+                    </p>
+                    <p class="text-amber-300 font-bold text-sm">HK$6,880 / 位起</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 住宿流程 -->
+    <section id="process" class="py-20 bg-sand">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-brand-dark">輕鬆四步 入住無憂</h2>
+                <p class="text-gray-500 mt-2">從預訂到退房，全程貼心服務</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                <div class="hidden md:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-sky-200"></div>
+
+                <div class="text-center reveal">
+                    <div class="w-24 h-24 bg-white mx-auto rounded-full flex items-center justify-center border-4 border-brand-primary shadow-lg mb-6">
+                        <i class="fas fa-calendar-check text-3xl text-brand-primary"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">1. 網上預訂</h4>
+                    <p class="text-gray-500 text-sm px-4">官網或電話預訂，即時確認訂房通知。</p>
+                </div>
+
+                <div class="text-center reveal" style="transition-delay: 100ms;">
+                    <div class="w-24 h-24 bg-white mx-auto rounded-full flex items-center justify-center border-4 border-brand-primary shadow-lg mb-6">
+                        <i class="fas fa-luggage-rolling text-3xl text-brand-primary"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">2. 入住登記</h4>
+                    <p class="text-gray-500 text-sm px-4">快速登記入住，行李專人送上房間。</p>
+                </div>
+
+                <div class="text-center reveal" style="transition-delay: 200ms;">
+                    <div class="w-24 h-24 bg-white mx-auto rounded-full flex items-center justify-center border-4 border-brand-primary shadow-lg mb-6">
+                        <i class="fas fa-umbrella-beach text-3xl text-brand-primary"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">3. 盡享假期</h4>
+                    <p class="text-gray-500 text-sm px-4">餐飲、水療、行程安排一應俱全。</p>
+                </div>
+
+                <div class="text-center reveal" style="transition-delay: 300ms;">
+                    <div class="w-24 h-24 bg-brand-dark mx-auto rounded-full flex items-center justify-center border-4 border-brand-accent shadow-lg mb-6">
+                        <i class="fas fa-heart text-3xl text-amber-300"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">4. 延遲退房</h4>
+                    <p class="text-gray-500 text-sm px-4">會員享免費延遲退房至下午 2 時。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 旅客心聲 -->
+    <section id="testimonials" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-primary font-bold tracking-[0.3em]">TESTIMONIALS</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mt-3 mb-4">旅客的真心評價</h2>
+                <p class="text-gray-500 max-w-xl mx-auto">4.9 分評價背後，是每一位賓客的笑容。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-sand rounded-2xl shadow-lg p-8 reveal">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-brand-primary to-brand-accent rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">張</div>
+                        <div class="ml-4">
+                            <h4 class="font-bold text-gray-800">張小姐</h4>
+                            <p class="text-brand-primary text-sm">自由行旅客</p>
+                        </div>
+                    </div>
+                    <div class="text-amber-400 text-sm mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        維港夜景房比想像中還要震撼，員工細心記得我的喜好，港式貼心名不虛傳。
+                    </p>
+                </div>
+
+                <div class="bg-sand rounded-2xl shadow-lg p-8 reveal" style="transition-delay: 100ms;">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-brand-primary to-brand-accent rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">J</div>
+                        <div class="ml-4">
+                            <h4 class="font-bold text-gray-800">Mr. Johnson</h4>
+                            <p class="text-brand-primary text-sm">商務旅客</p>
+                        </div>
+                    </div>
+                    <div class="text-amber-400 text-sm mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        行政酒廊服務一流，會議安排效率高，位置方便，每次來港都入住這裡。
+                    </p>
+                </div>
+
+                <div class="bg-sand rounded-2xl shadow-lg p-8 reveal" style="transition-delay: 200ms;">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-brand-primary to-brand-accent rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0">陳</div>
+                        <div class="ml-4">
+                            <h4 class="font-bold text-gray-800">陳太太</h4>
+                            <p class="text-brand-primary text-sm">家庭旅客</p>
+                        </div>
+                    </div>
+                    <div class="text-amber-400 text-sm mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        家庭房設備齊全，孩子玩遊戲角玩得開心，保姆服務讓我們可以安心用膳。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 貼心住宿服務 -->
+    <section id="services" class="py-20 bg-sand">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-primary font-bold tracking-[0.3em]">HOTEL SERVICES</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mt-3 mb-4">貼心住宿服務</h2>
+                <p class="text-gray-500 max-w-xl mx-auto">每個細節，都為令您的旅程更輕鬆。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="bg-white rounded-2xl border border-sky-100 p-6 text-center reveal">
+                    <div class="w-12 h-12 bg-white text-brand-primary rounded-xl flex items-center justify-center text-xl mx-auto mb-4 shadow-sm">
+                        <i class="fas fa-van-shuttle"></i>
+                    </div>
+                    <h4 class="font-bold mb-2 text-gray-800">免費機場穿梭</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">定時穿梭巴士往返機場及港鐵站，抵港即享無縫接送。</p>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-sky-100 p-6 text-center reveal" style="transition-delay: 100ms;">
+                    <div class="w-12 h-12 bg-white text-brand-primary rounded-xl flex items-center justify-center text-xl mx-auto mb-4 shadow-sm">
+                        <i class="fas fa-bell-concierge"></i>
+                    </div>
+                    <h4 class="font-bold mb-2 text-gray-800">24 小時客房服務</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">隨時享用客房餐飲，宵夜、早餐及商務簡餐全日供應。</p>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-sky-100 p-6 text-center reveal" style="transition-delay: 200ms;">
+                    <div class="w-12 h-12 bg-white text-brand-primary rounded-xl flex items-center justify-center text-xl mx-auto mb-4 shadow-sm">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h4 class="font-bold mb-2 text-gray-800">行李寄存服務</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">退房後免費寄存行李，繼續盡情探索香港，登機前輕鬆取回。</p>
+                </div>
+
+                <div class="bg-white rounded-2xl border border-sky-100 p-6 text-center reveal" style="transition-delay: 300ms;">
+                    <div class="w-12 h-12 bg-white text-brand-primary rounded-xl flex items-center justify-center text-xl mx-auto mb-4 shadow-sm">
+                        <i class="fas fa-map-location-dot"></i>
+                    </div>
+                    <h4 class="font-bold mb-2 text-gray-800">旅遊禮賓服務</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">行程策劃、餐廳訂位及景點門票，禮賓部為您一站式安排。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 優惠活動 -->
+    <section class="py-16 bg-brand-primary text-white relative overflow-hidden">
+        <div class="absolute inset-0 wave-pattern opacity-40"></div>
+        <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center justify-between">
+            <div class="md:w-2/3 reveal">
+                <h3 class="text-2xl font-bold mb-2">成為「悠遊會」會員</h3>
+                <p class="text-sky-100 opacity-95">BBBIP Holding Limited 會員計劃：住宿 5 晚享 1 晚免費，餐飲 9 折，生日月份免費升級客房。</p>
+            </div>
+            <div class="mt-6 md:mt-0 md:w-1/3 flex justify-end reveal">
+                <a href="#contact" class="px-6 py-3 bg-white text-brand-primary font-bold rounded-lg hover:bg-gray-100 transition shadow-lg">立即加入</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-3xl font-bold text-center text-brand-dark mb-12 reveal">常見問題</h2>
+
+            <div class="space-y-4">
+                <div class="bg-sand p-6 rounded-lg shadow-sm reveal">
+                    <h4 class="font-bold text-lg mb-2 text-gray-800"><i class="far fa-question-circle text-brand-primary mr-2"></i> 入住及退房時間是？</h4>
+                    <p class="text-gray-600">標準入住時間為下午 3 時，退房時間為上午 11 時。會員及指定套票可享延遲退房服務，行李寄存免費。</p>
+                </div>
+                <div class="bg-sand p-6 rounded-lg shadow-sm reveal">
+                    <h4 class="font-bold text-lg mb-2 text-gray-800"><i class="far fa-question-circle text-brand-primary mr-2"></i> 如何取消或修改訂房？</h4>
+                    <p class="text-gray-600">於入住前 48 小時取消可獲全額退款。可透過官網 abbbipholding.com 的訂單管理功能或致電 93743971 辦理。</p>
+                </div>
+                <div class="bg-sand p-6 rounded-lg shadow-sm reveal">
+                    <h4 class="font-bold text-lg mb-2 text-gray-800"><i class="far fa-question-circle text-brand-primary mr-2"></i> 酒店有提供機場接送嗎？</h4>
+                    <p class="text-gray-600">有。我們提供豪華七人車機場接送服務（單程港幣 450 元），亦設有免費穿梭巴士往返地鐵站，詳情請於預訂時向客服查詢。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 bg-brand-dark relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-brand-primary/25 to-transparent"></div>
+        <div class="container mx-auto px-6 text-center relative z-10 text-white">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">準備好展開香港之旅嗎？</h2>
+            <p class="text-xl text-gray-100 mb-10">立即預訂BBBIP Holding Limited住宿，官網訂房享最優惠價格保證。</p>
+            <a href="#contact" class="inline-block px-10 py-4 bg-brand-accent text-white font-bold rounded-full shadow-xl hover:bg-orange-600 transform hover:scale-105 transition duration-300">
+                立即訂房
+            </a>
+        </div>
+    </section>
+
+    <!-- 頁腳 -->
+    <footer id="contact" class="bg-brand-dark text-gray-200 pt-20 pb-10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <h3 class="text-white text-2xl font-bold mb-6">BBBIP Holding Limited</h3>
+                    <p class="mb-6 text-sm leading-relaxed">
+                        以港式熱情款待世界旅客，BBBIP Holding Limited 期望成為您探索香港的最佳起點，每一晚都是值得珍藏的回憶。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-accent hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-accent hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-accent hover:text-white transition"><i class="fab fa-weixin"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-accent hover:text-white transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6">快速連結</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#home" class="hover:text-amber-300 transition">首頁</a></li>
+                        <li><a href="#about" class="hover:text-amber-300 transition">關於我們</a></li>
+                        <li><a href="#rooms" class="hover:text-amber-300 transition">客房介紹</a></li>
+                        <li><a href="#" class="hover:text-amber-300 transition">會員計劃</a></li>
+                        <li><a href="#" class="hover:text-amber-300 transition">加入我們</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6">聯絡方式</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-amber-300"></i>
+                            <span>Rm L 16/F MG TWR 133 HOI BUN RD</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-amber-300"></i>
+                            <a href="mailto:contact@abbbipholding.com" class="hover:text-white transition">contact@abbbipholding.com</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-amber-300"></i>
+                            <a href="tel:93743971" class="hover:text-white transition text-lg font-bold">93743971</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-globe mr-3 text-amber-300"></i>
+                            <span>abbbipholding.com</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6">訂房查詢</h4>
+                    <form onsubmit="event.preventDefault(); alert('感謝您的查詢，訂房專員會盡快與您確認！');" class="space-y-3">
+                        <input type="text" placeholder="您的稱呼" class="w-full bg-white/10 border border-white/10 rounded py-3 px-4 text-white focus:ring-2 focus:ring-brand-accent outline-none text-sm">
+                        <input type="text" placeholder="聯絡電話" class="w-full bg-white/10 border border-white/10 rounded py-3 px-4 text-white focus:ring-2 focus:ring-brand-accent outline-none text-sm">
+                        <select class="w-full bg-white/10 border border-white/10 rounded py-3 px-4 text-gray-300 focus:ring-2 focus:ring-brand-accent outline-none text-sm">
+                            <option>客房類型</option>
+                            <option>豪華海景客房</option>
+                            <option>行政海景套房</option>
+                            <option>家庭連通客房</option>
+                            <option>旅遊套票</option>
+                        </select>
+                        <button type="submit" class="w-full bg-brand-accent text-white font-bold py-3 rounded hover:bg-orange-600 transition">提交查詢</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs">
+                <p>&copy; 2026 BBBIP Holding Limited 版權所有</p>
+                <div class="mt-4 md:mt-0 space-x-6">
+                    <a href="#" class="hover:text-amber-300">私隱政策</a>
+                    <a href="#" class="hover:text-amber-300">服務條款</a>
+                    <a href="#" class="hover:text-amber-300">訂房條款</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#home" id="backToTop" class="fixed bottom-8 right-8 bg-brand-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transform translate-y-20 transition-all duration-300 z-40 hover:bg-brand-dark">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass-nav', 'py-2');
+                navbar.classList.remove('py-5');
+                backToTop.classList.remove('translate-y-20');
+            } else {
+                navbar.classList.remove('glass-nav', 'py-2');
+                navbar.classList.add('py-5');
+                backToTop.classList.add('translate-y-20');
+            }
+        });
+
+        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    if (entry.target.querySelector('.counter') && !entry.target.dataset.counted) {
+                        startCounters(entry.target);
+                        entry.target.dataset.counted = true;
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        function startCounters(section) {
+            const counters = section.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                const updateCounter = () => {
+                    current += step;
+                    if (current < target) {
+                        counter.innerText = Math.ceil(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCounter();
+            });
+        }
+
+        document.querySelector('.fa-bars')?.parentElement?.addEventListener('click', () => {
+            alert('移動端菜單點擊 (此處可擴展側邊欄邏輯)');
+        });
+    </script>
+</body>
+</html>
